@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colégio São Cristóvão - Oficial</title>
+    <title>Colégio São Cristóvão</title>
     <style>
         :root {
             --azul-principal: #0056b3;
@@ -15,20 +15,22 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
+            margin: 0; padding: 0;
             background-color: var(--cinza-claro);
             color: #333;
-            scroll-behavior: smooth;
+            line-height: 1.6;
         }
 
-        /* HEADER & NAV */
         header {
             background: linear-gradient(135deg, var(--preto) 0%, var(--azul-escuro) 100%);
             color: var(--branco);
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
             border-bottom: 5px solid var(--azul-principal);
         }
+
+        header h1 { margin: 0; font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        header p { font-style: italic; opacity: 0.9; }
 
         nav {
             background-color: var(--preto);
@@ -36,30 +38,25 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        nav a {
+        nav ul {
+            list-style: none; margin: 0; padding: 0; text-align: center;
+        }
+
+        nav li { display: inline; margin: 0 15px; }
+        nav a, nav button {
             color: var(--branco);
             text-decoration: none;
             font-weight: bold;
-            transition: 0.3s;
-        }
-
-        nav a:hover { color: var(--azul-principal); }
-
-        /* BOTÃO PORTAL DO ALUNO */
-        .btn-portal {
-            background-color: var(--azul-principal);
-            padding: 8px 15px;
-            border-radius: 5px;
+            font-size: 1.1rem;
+            background: none;
+            border: none;
             cursor: pointer;
         }
+        nav a:hover, nav button:hover { color: var(--azul-principal); }
 
-        /* SEÇÕES */
         section {
             max-width: 1000px;
             margin: 40px auto;
@@ -69,101 +66,387 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        h2 { color: var(--azul-escuro); border-left: 5px solid var(--azul-principal); padding-left: 15px; }
-
-        /* 1. SISTEMA DE ACCORDION (MATRIZ CURRICULAR) */
-        .accordion {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 20px;
+        h2, h3 {
+            color: var(--azul-escuro);
+            border-left: 5px solid var(--azul-principal);
+            padding-left: 15px;
         }
 
-        .accordion-item { border-bottom: 1px solid #ddd; }
+        /* Imagens */
+        .imagem-container {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0;
+        }
+        .imagem-container img {
+            width: 100%; max-width: 450px; height: 250px; object-fit: cover;
+            border-radius: 12px; transition: transform 0.3s; box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .imagem-container img:hover { transform: scale(1.03); }
 
-        .accordion-header {
-            background: #f8f9fa;
-            padding: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            transition: 0.3s;
+        /* Diferenciais */
+        .diferenciais-list {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; padding: 0; list-style: none;
+        }
+        .diferenciais-list li {
+            background: var(--azul-escuro); color: white; padding: 15px;
+            border-radius: 8px; text-align: center; font-weight: 500;
         }
 
-        .accordion-header:hover { background: #e9ecef; }
-
-        .accordion-content {
-            display: none;
-            padding: 15px;
-            background: white;
-            border-top: 1px solid #ddd;
-        }
-
-        /* 2. FORMULÁRIO DE CONTATO/INSCRIÇÃO */
-        .form-grupo { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .btn-enviar {
-            background: var(--azul-escuro);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .btn-enviar:hover { background: var(--preto); }
-
-        /* 3. MODAL DE LOGIN (PORTAL DO ALUNO) */
+        /* MODAL LOGIN */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);
         }
-
         .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 30px;
-            width: 90%;
-            max-width: 400px;
-            border-radius: 10px;
-            position: relative;
+            background: white; margin: 10% auto; padding: 25px; border-radius: 12px;
+            width: 90%; max-width: 400px; position: relative;
+        }
+        .close { position: absolute; right: 20px; top: 10px; font-size: 32px; cursor: pointer; }
+
+        /* ACCORDION (Matriz Curricular) */
+        details {
+            margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;
+        }
+        summary {
+            background: var(--azul-escuro); color: white; padding: 16px; cursor: pointer;
+            font-weight: bold; font-size: 1.1rem;
+        }
+        summary::-webkit-details-marker { display: none; }
+
+        /* NOTÍCIAS + FILTRO */
+        .filters {
+            display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 25px;
+        }
+        .filters button {
+            padding: 10px 20px; background: var(--azul-principal); color: white;
+            border: none; border-radius: 5px; cursor: pointer; font-weight: 500;
+        }
+        .filters button.active { background: var(--azul-escuro); }
+        .news-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+        }
+        .news-card {
+            background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .news-card:hover { transform: translateY(-8px); }
+        .news-card img { width: 100%; height: 200px; object-fit: cover; }
+        .news-card .info { padding: 15px; }
+
+        /* FORMULÁRIO PRÉ-INSCRIÇÃO */
+        form input, form select {
+            width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px;
         }
 
-        .close {
-            position: absolute;
-            right: 20px; top: 10px;
-            font-size: 28px;
-            cursor: pointer;
+        /* CHATBOT */
+        .chatbot-btn {
+            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+            background: var(--azul-principal); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 32px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3); cursor: pointer; z-index: 1500;
+        }
+        .chat-modal {
+            display: none; position: fixed; bottom: 110px; right: 30px; width: 340px;
+            background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1600; overflow: hidden;
+        }
+        .chat-header {
+            background: var(--azul-escuro); color: white; padding: 15px; font-weight: bold;
+        }
+        .chat-body {
+            height: 320px; overflow-y: auto; padding: 15px; background: #f9f9f9;
+        }
+        .chat-message {
+            margin: 10px 0; padding: 10px; border-radius: 8px; max-width: 85%;
+        }
+        .user { background: var(--azul-principal); color: white; align-self: flex-end; }
+        .bot { background: #e0e0e0; }
+
+        footer {
+            background-color: var(--preto); color: var(--branco); padding: 30px;
+            text-align: center; margin-top: 50px;
         }
 
-        footer { background: var(--preto); color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .btn-curso {
+            display: inline-block; margin-top: 10px; padding: 10px 20px;
+            background-color: var(--azul-principal); color: white; text-decoration: none;
+            border-radius: 5px; transition: background 0.3s;
+        }
+        .btn-curso:hover { background-color: #004494; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Colégio São Cristóvão</h1>
-    <p>Tecnologia e Educação andam juntas.</p>
+    <p>Ensino de qualidade para um futuro brilhante</p>
 </header>
 
 <nav>
-    <a href="#">Início</a>
-    <a href="#Cursos">Cursos</a>
-    <a href="#Inscricao">Inscrição</a>
-    <div class="btn-portal" onclick="abrirModal()">Portal do Aluno</div>
+    <ul>
+        <li><a href="#sobre">Sobre nós</a></li>
+        <li><a href="#Cursos">Cursos</a></li>
+        <li><a href="#Noticias">Notícias</a></li>
+        <li><a href="#Contato">Contato</a></li>
+        <li><button id="btn-portal">Portal do Aluno</button></li>
+    </ul>
 </nav>
 
-<section id="Cursos">
+<!-- ==================== LOGIN MODAL ==================== -->
+<div id="modal-login" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close-login">×</span>
+        <h2>Portal do Aluno</h2>
+        <p>Digite seu RM e senha para acessar notas e materiais.</p>
+        <form id="login-form">
+            <input type="text" id="rm" placeholder="RM (ex: 12345)" required>
+            <input type="password" id="senha" placeholder="Senha" required>
+            <button type="submit" style="width:100%; padding:12px; background:var(--azul-principal); color:white; border:none; border-radius:5px; margin-top:10px;">Entrar</button>
+        </form>
+        <p style="font-size:0.9rem; text-align:center; margin-top:15px;">Login simulado – funciona para demonstração</p>
+    </div>
+</div>
+
+<section id="sobre">
+    <h2>Bem-vindos ao Colégio São Cristóvão</h2>
+    <p>Nossa escola oferece um ambiente acolhedor e inovador...</p>
     
+    <div class="imagem-container">
+        <img src="2.jpg" alt="Estrutura da escola">
+        <img src="1.jpg" alt="Alunos em atividade">
+    </div>
+
+    <h3>Nossos Diferenciais</h3>
+    <ul class="diferenciais-list">
+        <li>Ensino Personalizado</li>
+        <li>Tecnologia em Sala</li>
+        <li>Projetos Interdisciplinares</li>
+        <li>Foco em Habilidades</li>
+    </ul>
+</section>
+
+<section id="Cursos">
+    <h2>Curso Técnico em Desenvolvimento de Sistemas</h2>
+    <p>O curso técnico em <strong>Desenvolvimento de Sistemas</strong> do Colégio São Cristóvão...</p>
+    
+    <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; border-left: 5px solid var(--azul-escuro);">
+        <p><strong>O que você vai aprender:</strong></p>
+        <ul>
+            <li>Lógicas de programação (Python, JavaScript, Java);</li>
+            <li>Criação de sites modernos (HTML5, CSS3, React);</li>
+            <li>Gerenciamento de Bancos de Dados;</li>
+            <li>Desenvolvimento de Aplicativos Móveis;</li>
+            <li>Metodologias Ágeis e UX Design.</li>
+        </ul>
+    </div>
+
+    <h3>Matriz Curricular Interativa</h3>
+    <details>
+        <summary>1º Semestre</summary>
+        <ul><li>Lógica de Programação</li><li>Matemática Aplicada</li><li>Introdução à Internet</li></ul>
+    </details>
+    <details>
+        <summary>2º Semestre</summary>
+        <ul><li>Programação Orientada a Objetos</li><li>Banco de Dados</li><li>HTML5 + CSS3</li></ul>
+    </details>
+    <details>
+        <summary>3º Semestre</summary>
+        <ul><li>Desenvolvimento Web (React)</li><li>Desenvolvimento Mobile</li><li>Metodologias Ágeis</li></ul>
+    </details>
+    <details>
+        <summary>4º Semestre</summary>
+        <ul><li>Estágio Supervisionado</li><li>UX/UI Design</li><li>Projeto Final</li></ul>
+    </details>
+
+    <br>
+    <a href="https://brasilescola.uol.com.br/informatica/desenvolvimento-sistemas.htm" target="_blank" class="btn-curso">Saiba mais sobre a profissão</a>
+</section>
+
+<!-- ==================== NOTÍCIAS COM FILTRO ==================== -->
+<section id="Noticias">
+    <h2>Notícias e Eventos</h2>
+    
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="tecnologia">Tecnologia</button>
+        <button class="filter-btn" data-filter="esportes">Esportes</button>
+        <button class="filter-btn" data-filter="avisos">Avisos</button>
+    </div>
+
+    <div class="news-grid">
+        <!-- Card 1 -->
+        <div class="news-card" data-category="tecnologia">
+            <img src="https://picsum.photos/id/1015/600/400" alt="Hackathon">
+            <div class="info">
+                <h4>Hackathon 2025 – Alunos desenvolvem app de presença</h4>
+                <p>15 de março de 2025</p>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="news-card" data-category="esportes">
+            <img src="https://picsum.photos/id/201/600/400" alt="Campeonato">
+            <div class="info">
+                <h4>Colégio vence torneio intercolegial de futsal</h4>
+                <p>10 de março de 2025</p>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="news-card" data-category="avisos">
+            <img src="https://picsum.photos/id/29/600/400" alt="Aviso">
+            <div class="info">
+                <h4>Reunião de pais – 25/03</h4>
+                <p>8 de março de 2025</p>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="news-card" data-category="tecnologia">
+            <img src="https://picsum.photos/id/160/600/400" alt="Oficina">
+            <div class="info">
+                <h4>Oficina de IA com alunos do 3º semestre</h4>
+                <p>5 de março de 2025</p>
+            </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="news-card" data-category="esportes">
+            <img src="https://picsum.photos/id/251/600/400" alt="Vôlei">
+            <div class="info">
+                <h4>Time de vôlei classificado para final estadual</h4>
+                <p>28 de fevereiro de 2025</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FORMULÁRIO PRÉ-INSCRIÇÃO ==================== -->
+<section id="Contato">
+    <h2>Pré-Inscrição</h2>
+    <p>Preencha o formulário abaixo e nossa equipe entrará em contato.</p>
+    
+    <form id="preinscricao-form">
+        <input type="text" id="nome" placeholder="Nome completo" required>
+        <input type="email" id="email" placeholder="E-mail" required>
+        <input type="tel" id="telefone" placeholder="(11) 99999-9999" maxlength="15" required>
+        
+        <select id="curso" required>
+            <option value="">Selecione o curso</option>
+            <option value="Desenvolvimento de Sistemas" selected>Curso Técnico em Desenvolvimento de Sistemas</option>
+            <option value="Administração">Técnico em Administração</option>
+            <option value="Enfermagem">Técnico em Enfermagem</option>
+        </select>
+        
+        <button type="submit" style="width:100%; padding:14px; background:var(--azul-principal); color:white; border:none; border-radius:6px; font-size:1.1rem;">Enviar Pré-Inscrição</button>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; 2025 Colégio São Cristóvão. Todos os direitos reservados.</p>
+</footer>
+
+<!-- ==================== CHATBOT ==================== -->
+<div class="chatbot-btn" id="chatbot-btn">💬</div>
+
+<div class="chat-modal" id="chat-modal">
+    <div class="chat-header">
+        Chatbot – Dúvidas Frequentes
+        <span class="close" id="close-chat" style="float:right; cursor:pointer;">×</span>
+    </div>
+    <div class="chat-body" id="chat-body">
+        <p style="text-align:center; color:#666;">Clique em uma pergunta abaixo:</p>
+    </div>
+    <div style="padding:10px; background:#f0f0f0; display:flex; flex-wrap:wrap; gap:8px;">
+        <button class="faq-btn" data-question="Qual o valor da mensalidade?" data-answer="A mensalidade do Curso Técnico em Desenvolvimento de Sistemas é R$ 450,00 por mês.">Mensalidade</button>
+        <button class="faq-btn" data-question="Quais os horários das aulas?" data-answer="Aulas de segunda a sexta, das 13h30 às 17h30.">Horários</button>
+        <button class="faq-btn" data-question="Como faço para chegar na escola?" data-answer="Endereço: Rua São Cristóvão, 123 – Centro. Ônibus 123 e 456 param em frente.">Como chegar</button>
+        <button class="faq-btn" data-question="O curso tem estágio?" data-answer="Sim! Todos os alunos do 4º semestre realizam estágio obrigatório remunerado.">Estágio</button>
+    </div>
+</div>
+
+<script>
+    // === PORTAL DO ALUNO ===
+    const btnPortal = document.getElementById('btn-portal');
+    const modalLogin = document.getElementById('modal-login');
+    const closeLogin = document.getElementById('close-login');
+
+    btnPortal.onclick = () => modalLogin.style.display = 'block';
+    closeLogin.onclick = () => modalLogin.style.display = 'none';
+
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('✅ Login simulado realizado com sucesso!\n\nBem-vindo, aluno!');
+        modalLogin.style.display = 'none';
+    });
+
+    // === FILTRO DE NOTÍCIAS ===
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            document.querySelectorAll('.news-card').forEach(card => {
+                card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
+            });
+        });
+    });
+
+    // === FORMULÁRIO PRÉ-INSCRIÇÃO + MÁSCARA TELEFONE ===
+    const form = document.getElementById('preinscricao-form');
+    const telefoneInput = document.getElementById('telefone');
+
+    telefoneInput.addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, '');
+        v = v.replace(/^(\d{2})(\d)/, '($1) $2');
+        v = v.replace(/(\d{5})(\d)/, '$1-$2');
+        e.target.value = v.substring(0, 15);
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const tel = telefoneInput.value;
+
+        if (!email.includes('@') || tel.length < 14) {
+            alert('❌ Por favor, preencha todos os campos corretamente.');
+            return;
+        }
+        alert('✅ Pré-inscrição enviada com sucesso!\nNossa equipe entrará em contato em breve.');
+        form.reset();
+    });
+
+    // === CHATBOT ===
+    const chatbotBtn = document.getElementById('chatbot-btn');
+    const chatModal = document.getElementById('chat-modal');
+    const closeChat = document.getElementById('close-chat');
+    const chatBody = document.getElementById('chat-body');
+
+    chatbotBtn.onclick = () => chatModal.style.display = 'block';
+    closeChat.onclick = () => chatModal.style.display = 'none';
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const pergunta = btn.dataset.question;
+            const resposta = btn.dataset.answer;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-message user';
+            userMsg.textContent = pergunta;
+            chatBody.appendChild(userMsg);
+
+            const botMsg = document.createElement('div');
+            botMsg.className = 'chat-message bot';
+            botMsg.textContent = resposta;
+            chatBody.appendChild(botMsg);
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+        });
+    });
+
+    // Fecha modais ao clicar fora
+    window.onclick = function(e) {
+        if (e.target === modalLogin) modalLogin.style.display = 'none';
+        if (e.target === chatModal) chatModal.style.display = 'none';
+    };
+</script>
+</body>
+</html>
