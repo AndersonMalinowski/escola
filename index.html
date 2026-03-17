@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colégio São Cristóvão</title>
+    <title>Colégio São Cristóvão - Oficial</title>
     <style>
-        /* Variáveis de Cores para facilitar a manutenção */
         :root {
             --azul-principal: #0056b3;
             --azul-escuro: #003366;
@@ -17,30 +16,18 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
             background-color: var(--cinza-claro);
             color: #333;
-            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
+        /* HEADER & NAV */
         header {
             background: linear-gradient(135deg, var(--preto) 0%, var(--azul-escuro) 100%);
             color: var(--branco);
-            padding: 60px 20px;
+            padding: 40px 20px;
             text-align: center;
             border-bottom: 5px solid var(--azul-principal);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        header p {
-            font-style: italic;
-            opacity: 0.9;
         }
 
         nav {
@@ -49,33 +36,30 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        nav li {
-            display: inline;
-            margin: 0 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
         }
 
         nav a {
             color: var(--branco);
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s;
-            font-size: 1.1rem;
+            transition: 0.3s;
         }
 
-        nav a:hover {
-            color: var(--azul-principal);
+        nav a:hover { color: var(--azul-principal); }
+
+        /* BOTÃO PORTAL DO ALUNO */
+        .btn-portal {
+            background-color: var(--azul-principal);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
+        /* SEÇÕES */
         section {
             max-width: 1000px;
             margin: 40px auto;
@@ -85,133 +69,101 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        h2, h3 {
-            color: var(--azul-escuro);
-            border-left: 5px solid var(--azul-principal);
-            padding-left: 15px;
+        h2 { color: var(--azul-escuro); border-left: 5px solid var(--azul-principal); padding-left: 15px; }
+
+        /* 1. SISTEMA DE ACCORDION (MATRIZ CURRICULAR) */
+        .accordion {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px;
         }
 
-        /* Estilos para as imagens */
-        .imagem-container {
+        .accordion-item { border-bottom: 1px solid #ddd; }
+
+        .accordion-header {
+            background: #f8f9fa;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 30px 0;
+            justify-content: space-between;
+            transition: 0.3s;
         }
 
-        .imagem-container img {
+        .accordion-header:hover { background: #e9ecef; }
+
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+
+        /* 2. FORMULÁRIO DE CONTATO/INSCRIÇÃO */
+        .form-grupo { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select, textarea {
             width: 100%;
-            max-width: 450px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
         }
-
-        .imagem-container img:hover {
-            transform: scale(1.03);
-        }
-
-        /* Lista de diferenciais */
-        .diferenciais-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 0;
-            list-style: none;
-        }
-
-        .diferenciais-list li {
+        .btn-enviar {
             background: var(--azul-escuro);
             color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        footer {
-            background-color: var(--preto);
-            color: var(--branco);
-            padding: 30px;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        /* Botão de destaque para o curso */
-        .btn-curso {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: var(--azul-principal);
-            color: white;
-            text-decoration: none;
+            border: none;
+            padding: 12px 25px;
             border-radius: 5px;
-            transition: background 0.3s;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-enviar:hover { background: var(--preto); }
+
+        /* 3. MODAL DE LOGIN (PORTAL DO ALUNO) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7);
         }
 
-        .btn-curso:hover {
-            background-color: #004494;
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+            position: relative;
         }
+
+        .close {
+            position: absolute;
+            right: 20px; top: 10px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        footer { background: var(--preto); color: white; text-align: center; padding: 20px; margin-top: 40px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Colégio São Cristóvão</h1>
-    <p>Ensino de qualidade para um futuro brilhante</p>
+    <p>Tecnologia e Educação andam juntas.</p>
 </header>
 
 <nav>
-    <ul>
-        <li><a href="#">Sobre nós</a></li>
-        <li><a href="#Cursos">Cursos</a></li>
-        <li><a href="#">Notícias</a></li>
-        <li><a href="#">Contato</a></li>
-    </ul>
+    <a href="#">Início</a>
+    <a href="#Cursos">Cursos</a>
+    <a href="#Inscricao">Inscrição</a>
+    <div class="btn-portal" onclick="abrirModal()">Portal do Aluno</div>
 </nav>
 
-<section>
-    <h2>Bem-vindos ao Colégio São Cristóvão</h2>
-    <p>Nossa escola oferece um ambiente acolhedor e inovador, com profissionais qualificados que visam o desenvolvimento integral dos alunos, preparando-os para os desafios do mercado e da vida.</p>
-    
-    <div class="imagem-container">
-        <img src="2.jpg" alt="Estrutura da escola">
-        <img src="1.jpg" alt="Alunos em atividade">
-    </div>
-
-    <h3>Nossos Diferenciais</h3>
-    <ul class="diferenciais-list">
-        <li>Ensino Personalizado</li>
-        <li>Tecnologia em Sala</li>
-        <li>Projetos Interdisciplinares</li>
-        <li>Foco em Habilidades</li>
-    </ul>
-</section>
-
 <section id="Cursos">
-    <h2>Curso Técnico em Desenvolvimento de Sistemas</h2>
-    <p>O curso técnico em <strong>Desenvolvimento de Sistemas</strong> do Colégio São Cristóvão é focado em transformar alunos em profissionais capacitados para o mercado de tecnologia.</p>
     
-    <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; border-left: 5px solid var(--azul-escuro);">
-        <p><strong>O que você vai aprender:</strong></p>
-        <ul>
-            <li>Lógicas de programação (Python, JavaScript, Java);</li>
-            <li>Criação de sites modernos (HTML5, CSS3, React);</li>
-            <li>Gerenciamento de Bancos de Dados;</li>
-            <li>Desenvolvimento de Aplicativos Móveis;</li>
-            <li>Metodologias Ágeis e UX Design.</li>
-        </ul>
-    </div>
-    <br>
-    <a href="https://brasilescola.uol.com.br/informatica/desenvolvimento-sistemas.htm" target="_blank" class="btn-curso">Saiba mais sobre a profissão</a>
-</section>
-
-<footer>
-    <p>&copy; 2025 Colégio São Cristóvão. Todos os direitos reservados.</p>
-</footer>
-
-</body>
-</html>
