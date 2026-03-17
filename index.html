@@ -1,84 +1,161 @@
-  <!DOCPYPE html>
-    <html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colégio São Cristóvão</title>
+    <style>
+        /* Variáveis de Cores para facilitar a manutenção */
+        :root {
+            --azul-principal: #0056b3;
+            --azul-escuro: #003366;
+            --preto: #1a1a1a;
+            --cinza-claro: #f4f4f9;
+            --branco: #ffffff;
+        }
 
-    <head>
-   <meta charset+"UTF-8">
-    <meta name+"viewport"content+"width+device-width,initial-scale+1.0">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cinza-claro);
+            color: #333;
+            line-height: 1.6;
+        }
 
-    <title>Colégio São cristóvão</title>
-<style>
-body  {font-family:sans-serif;
-    margin:0;
-    padding:0;
-}
+        header {
+            background: linear-gradient(135deg, var(--preto) 0%, var(--azul-escuro) 100%);
+            color: var(--branco);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--azul-principal);
+        }
 
-    header{
-    background-color:
-#007bff;
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    color:white;
-    padding:20px;
-    text-align:center;
-}
+        header p {
+            font-style: italic;
+            opacity: 0.9;
+        }
 
+        nav {
+            background-color: var(--preto);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
 
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
 
-    nav{
-    background-color:
-    #f8f9fa;
-    padding:10px;
-}
-    nav ul{
-    list-style:none;
-    margin:0;
-    padding:0;
-    text-align:center;/* centraliza os links*/
-}
-    nav li{
-    display:inline;
-    margin:0 10px;
-}
+        nav li {
+            display: inline;
+            margin: 0 15px;
+        }
 
-    section{
-    padding: 20px;
-}
+        nav a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
 
-    footer{
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align:center;
-}
+        nav a:hover {
+            color: var(--azul-principal);
+        }
 
+        section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--branco);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
 
+        h2, h3 {
+            color: var(--azul-escuro);
+            border-left: 5px solid var(--azul-principal);
+            padding-left: 15px;
+        }
 
-/* estilos para as imagens */
-    .img-container{
-    text-align:center; /* centraliza as imagens */
+        /* Estilos para as imagens */
+        .imagem-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
 
-    margin-botton: 20px; /* adiciona espço abaixo das imagens */
-}
+        .imagem-container img {
+            width: 100%;
+            max-width: 450px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
 
-img{
- border-radius:10px;
-}
+        .imagem-container img:hover {
+            transform: scale(1.03);
+        }
 
-img{
- box-hadow:4px 4px 10px rgba (0, 0, 0, 0.5);
-}
-    .img-container img{
-    max-width:90%;
-/* largura maxima das imagens */
+        /* Lista de diferenciais */
+        .diferenciais-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 0;
+            list-style: none;
+        }
 
-    height:auto; /* altura automatica para manter a proporção */
-    border-radius: 8px; /* borda arredondada */
-    box-shadow: 0 4px 8px rgba (0, 0, 0, 0.1); /*sombra suave*/
-}
+        .diferenciais-list li {
+            background: var(--azul-escuro);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        footer {
+            background-color: var(--preto);
+            color: var(--branco);
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Botão de destaque para o curso */
+        .btn-curso {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: var(--azul-principal);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn-curso:hover {
+            background-color: #004494;
+        }
     </style>
-    
-
-
-
 </head>
 <body>
 
@@ -86,45 +163,55 @@ img{
     <h1>Colégio São Cristóvão</h1>
     <p>Ensino de qualidade para um futuro brilhante</p>
 </header>
+
 <nav>
-<ul>
-    <li><a href="#">Sobre nos</a></li>
-    <li><a href="#">Cursos</a></li>
-    <li><a href="#">Noticias</a></li>
-    <li><a href="#">Contato</a></li>
-
-</ul>
+    <ul>
+        <li><a href="#">Sobre nós</a></li>
+        <li><a href="#Cursos">Cursos</a></li>
+        <li><a href="#">Notícias</a></li>
+        <li><a href="#">Contato</a></li>
+    </ul>
 </nav>
-<section>
-    <h2>Bem-Vindos ao Colégio São Cristóvão</h2>
-<p>Nossa escola oferece um ambiente acolhedor e inovador, com professores qualificados que visam o desenvolvimento integral dos alunos</p>
-    <div class="imagem-container">
-<img src="2.jpg"alt="imagem da escola">
-</div>
-<div class="imagem-container">
-<img src="1.jpg"alt="imagem da escola">
-</div>
 
-    <h3>Nossos diferenciais</h3>
-<ul>
-    <li>Ensino personalizado</li>
-    <li>Tecnologia em sala de aula</li>
-    <li>Projetos interdiciplinares</li>
-    <li>foco no desenvolvimento de habilidades</li>
-</ul>
+<section>
+    <h2>Bem-vindos ao Colégio São Cristóvão</h2>
+    <p>Nossa escola oferece um ambiente acolhedor e inovador, com profissionais qualificados que visam o desenvolvimento integral dos alunos, preparando-os para os desafios do mercado e da vida.</p>
+    
+    <div class="imagem-container">
+        <img src="2.jpg" alt="Estrutura da escola">
+        <img src="1.jpg" alt="Alunos em atividade">
+    </div>
+
+    <h3>Nossos Diferenciais</h3>
+    <ul class="diferenciais-list">
+        <li>Ensino Personalizado</li>
+        <li>Tecnologia em Sala</li>
+        <li>Projetos Interdisciplinares</li>
+        <li>Foco em Habilidades</li>
+    </ul>
 </section>
 
-    <section id="Cursos"> 
-    </section>
+<section id="Cursos">
+    <h2>Curso Técnico em Desenvolvimento de Sistemas</h2>
+    <p>O curso técnico em <strong>Desenvolvimento de Sistemas</strong> do Colégio São Cristóvão é focado em transformar alunos em profissionais capacitados para o mercado de tecnologia.</p>
+    
+    <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; border-left: 5px solid var(--azul-escuro);">
+        <p><strong>O que você vai aprender:</strong></p>
+        <ul>
+            <li>Lógicas de programação (Python, JavaScript, Java);</li>
+            <li>Criação de sites modernos (HTML5, CSS3, React);</li>
+            <li>Gerenciamento de Bancos de Dados;</li>
+            <li>Desenvolvimento de Aplicativos Móveis;</li>
+            <li>Metodologias Ágeis e UX Design.</li>
+        </ul>
+    </div>
+    <br>
+    <a href="https://brasilescola.uol.com.br/informatica/desenvolvimento-sistemas.htm" target="_blank" class="btn-curso">Saiba mais sobre a profissão</a>
+</section>
 
-    <section id="Notícias"> 
-    </section>
-
-    <section id="Contato"> 
-    </section>
 <footer>
-    <p>&copy;2025 Colégio São Cristóvão. Todos os direitos reservados.</p>
+    <p>&copy; 2025 Colégio São Cristóvão. Todos os direitos reservados.</p>
+</footer>
 
-    </footer>
-    </body>
-    </html>
+</body>
+</html>
