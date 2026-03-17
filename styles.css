@@ -1,1 +1,111 @@
+:root {
+    --azul-principal: #0056b3;
+    --azul-escuro:   #003366;
+    --preto:         #1a1a1a;
+    --cinza-claro:   #f4f4f9;
+    --branco:        #ffffff;
+}
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--cinza-claro);
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, var(--preto) 0%, var(--azul-escuro) 100%);
+    color: var(--branco);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 5px solid var(--azul-principal);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header p {
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* ... mantenha todo o CSS que estava dentro da tag <style> ... */
+
+/* Exemplo de continuação (copie o restante do seu CSS original): */
+
+nav {
+    background-color: var(--preto);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a, nav button {
+    color: var(--branco);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+nav a:hover, nav button:hover {
+    color: var(--azul-principal);
+}
+
+/* imagens, modais, accordion, notícias, formulário, chatbot... */
+/* cole todo o conteúdo que estava dentro de <style> aqui */
+
+.course-highlight {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid var(--azul-escuro);
+    margin: 20px 0;
+}
+
+.chat-footer {
+    padding: 10px;
+    background: #f0f0f0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.btn-curso {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: var(--azul-principal);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn-curso:hover {
+    background-color: #004494;
+}
+
+/* ... continue com o restante do CSS ... */
