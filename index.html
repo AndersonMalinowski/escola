@@ -20,15 +20,14 @@
 
 <nav>
     <ul>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#cursos">Cursos</a></li>
-        <li><a href="#noticias">Notícias</a></li>
-        <li><a href="#contato">Contato</a></li>
+        <li><a href="#" class="tab-link active" data-tab="sobre">Sobre</a></li>
+        <li><a href="#" class="tab-link" data-tab="cursos">Cursos</a></li>
+        <li><a href="#" class="tab-link" data-tab="noticias">Notícias</a></li>
+        <li><a href="#" class="tab-link" data-tab="contato">Contato</a></li>
         <li><button id="btn-portal">Portal do Aluno</button></li>
     </ul>
 </nav>
 
-<!-- Modal Login -->
 <div id="modal-login" class="modal">
     <div class="modal-content">
         <span class="close" id="close-login">&times;</span>
@@ -36,20 +35,20 @@
         <form id="login-form">
             <input type="text" id="rm" placeholder="RM (ex: 12345)" required>
             <input type="password" id="senha" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
+            <button type="submit" class="btn-primary">Entrar</button>
         </form>
         <p class="small-note">Login simulado para demonstração</p>
     </div>
 </div>
 
 <main>
-    <section id="sobre">
+    <section id="sobre" class="tab-content active">
         <h2>Bem-vindo ao Colégio São Cristóvão</h2>
         <p>Ambiente acolhedor, ensino de excelência e foco no desenvolvimento integral do aluno.</p>
 
         <div class="gallery">
-            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Alunos em sala moderna">
-            <img src="https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Laboratório de informática">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="Alunos">
+            <img src="https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?auto=format&fit=crop&w=800&q=80" alt="Laboratório">
         </div>
 
         <h3>Nossos Diferenciais</h3>
@@ -61,7 +60,7 @@
         </div>
     </section>
 
-    <section id="cursos">
+    <section id="cursos" class="tab-content">
         <h2>Curso Técnico em Desenvolvimento de Sistemas</h2>
         <div class="course-box">
             <h3>O que você vai aprender</h3>
@@ -69,57 +68,57 @@
                 <li>Programação (Python, JavaScript, Java)</li>
                 <li>Desenvolvimento Web moderno (HTML, CSS, React)</li>
                 <li>Bancos de Dados e SQL</li>
-                <li>Desenvolvimento Mobile (React Native / Flutter)</li>
-                <li>Metodologias Ágeis, Git e DevOps básico</li>
+                <li>Desenvolvimento Mobile</li>
                 <li>UX/UI Design e Prototipagem</li>
             </ul>
         </div>
 
         <h3>Matriz Curricular</h3>
         <div class="accordion">
-            <details><summary>1º Módulo</summary><ul><li>Lógica de Programação</li><li>Matemática Computacional</li><li>Fundamentos de Redes</li></ul></details>
-            <details><summary>2º Módulo</summary><ul><li>POO e Java</li><li>Banco de Dados Relacional</li><li>Desenvolvimento Web I (HTML + CSS + JS)</li></ul></details>
-            <details><summary>3º Módulo</summary><ul><li>Desenvolvimento Web II (React)</li><li>Desenvolvimento Mobile</li><li>Metodologias Ágeis e Gestão de Projetos</li></ul></details>
-            <details><summary>4º Módulo</summary><ul><li>Estágio Supervisionado</li><li>UX/UI e Design de Interfaces</li><li>Trabalho de Conclusão de Curso</li></ul></details>
+            <details><summary>1º Módulo</summary><ul><li>Lógica de Programação</li><li>Matemática Computacional</li></ul></details>
+            <details><summary>2º Módulo</summary><ul><li>POO e Java</li><li>Banco de Dados Relacional</li></ul></details>
+            <details><summary>3º Módulo</summary><ul><li>Desenvolvimento Web II (React)</li><li>Metodologias Ágeis</li></ul></details>
         </div>
-
+        <br>
         <a href="https://brasilescola.uol.com.br/informatica/desenvolvimento-sistemas.htm" target="_blank" class="btn-primary">Saiba mais sobre a profissão</a>
     </section>
 
-    <section id="noticias">
+    <section id="noticias" class="tab-content">
         <h2>Notícias & Eventos</h2>
-
         <div class="filters">
             <button class="filter-btn active" data-filter="all">Todos</button>
             <button class="filter-btn" data-filter="tecnologia">Tecnologia</button>
             <button class="filter-btn" data-filter="esportes">Esportes</button>
-            <button class="filter-btn" data-filter="avisos">Avisos</button>
         </div>
 
         <div class="news-grid">
-            <!-- mantenha seus cards aqui – usei placeholders melhores -->
             <div class="news-card" data-category="tecnologia">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hackathon">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Hackathon">
                 <div class="info">
                     <h4>Hackathon 2025 – 1º lugar no app de frequência</h4>
                     <time>15 mar 2025</time>
                 </div>
             </div>
-            <!-- adicione os outros cards conforme desejar -->
+            <div class="news-card" data-category="esportes">
+                <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=800&q=80" alt="Intercolegial">
+                <div class="info">
+                    <h4>Abertura dos Jogos Intercolegiais</h4>
+                    <time>10 abr 2025</time>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="contato">
+    <section id="contato" class="tab-content">
         <h2>Pré-inscrição</h2>
         <form id="preinscricao-form" class="contact-form">
             <input type="text" placeholder="Nome completo" required>
             <input type="email" placeholder="E-mail" required>
             <input type="tel" id="telefone" placeholder="(41) 99999-9999" maxlength="15" required>
             <select required>
-                <option value="">Selecione o curso desejado</option>
-                <option value="ds" selected>Técnico em Desenvolvimento de Sistemas</option>
+                <option value="">Selecione o curso</option>
+                <option value="ds">Técnico em Desenvolvimento de Sistemas</option>
                 <option value="adm">Técnico em Administração</option>
-                <option value="enf">Técnico em Enfermagem</option>
             </select>
             <button type="submit" class="btn-primary">Enviar Pré-inscrição</button>
         </form>
@@ -127,10 +126,9 @@
 </main>
 
 <footer>
-    <p>© 2025 Colégio São Cristóvão • Rua São Cristóvão, 123 – Centro • Curitiba/PR</p>
+    <p>© 2025 Colégio São Cristóvão • Rua São Cristóvão, 123 • Curitiba/PR</p>
 </footer>
 
-<!-- Chatbot -->
 <div class="chatbot-fab" id="chatbot-btn">💬</div>
 <div class="chat-window" id="chat-modal">
     <div class="chat-header">
@@ -139,10 +137,9 @@
     </div>
     <div class="chat-body" id="chat-body"></div>
     <div class="chat-actions">
-        <button class="faq-btn" data-q="mensalidade">Valor da mensalidade?</button>
-        <button class="faq-btn" data-q="horario">Horários das aulas</button>
-        <button class="faq-btn" data-q="endereco">Como chegar</button>
-        <button class="faq-btn" data-q="estagio">Tem estágio?</button>
+        <button class="faq-btn" data-q="mensalidade">Mensalidade?</button>
+        <button class="faq-btn" data-q="horario">Horários</button>
+        <button class="faq-btn" data-q="endereco">Endereço</button>
     </div>
 </div>
 
