@@ -1,27 +1,63 @@
-/* Garante que o conteúdo ocupe a tela inteira se houver pouco texto */
-main {
-    min-height: 70vh; 
+:root {
+    --primary: #2563eb;
+    --secondary: #1e40af;
+    --accent: #38bdf8;
+    --bg: #f8fafc;
+    --text: #1e293b;
+    --white: #ffffff;
 }
 
-/* Estilo para marcar qual página está ativa no menu */
-nav a.active {
-    color: var(--primary);
-    border-bottom: 2px solid var(--primary);
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body { background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+/* HEADER & NAV */
+header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: var(--white); padding: 3rem 1rem; text-align: center; }
+
+nav { background: var(--white); padding: 1rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+nav ul { display: flex; justify-content: center; align-items: center; list-style: none; gap: 20px; flex-wrap: wrap; }
+nav a { text-decoration: none; color: var(--text); font-weight: 500; transition: 0.3s; padding: 5px 10px; }
+nav a.active { color: var(--primary); border-bottom: 3px solid var(--primary); }
+
+#btn-portal { background: var(--primary); color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; }
+
+/* LOGICA DE ABAS */
+.tab-content { display: none; max-width: 1000px; margin: 40px auto; padding: 20px; animation: fadeIn 0.4s ease-in-out; }
+.tab-content.active { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Estilização melhorada para os inputs do contato */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+/* COMPONENTES */
+h2 { margin-bottom: 20px; color: var(--secondary); border-left: 5px solid var(--accent); padding-left: 15px; }
 
-.contact-form input, .contact-form select {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
+.gallery { display: flex; gap: 15px; margin: 20px 0; }
+.gallery img { width: 50%; border-radius: 10px; object-fit: cover; height: 250px; }
+
+.diferenciais-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+.card-diferencial { background: var(--white); padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; border-bottom: 3px solid var(--accent); }
+
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.news-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.news-card img { width: 100%; height: 180px; object-fit: cover; }
+.news-card .info { padding: 15px; }
+
+.contact-form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; }
+.contact-form input, .contact-form select { padding: 12px; border: 1px solid #ddd; border-radius: 5px; }
+.btn-primary { background: var(--primary); color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; }
+
+/* MODAL & CHATBOT (Simplificados para o exemplo) */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+.modal-content { background: white; margin: 10% auto; padding: 30px; width: 90%; max-width: 400px; border-radius: 15px; position: relative; }
+.close { position: absolute; right: 20px; top: 10px; font-size: 25px; cursor: pointer; }
+
+.chatbot-fab { position: fixed; bottom: 20px; right: 20px; background: var(--primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; cursor: pointer; z-index: 999; }
+.chat-window { display: none; position: fixed; bottom: 90px; right: 20px; width: 300px; background: white; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; z-index: 999; }
+.chat-header { background: var(--primary); color: white; padding: 15px; display: flex; justify-content: space-between; }
+.chat-body { height: 250px; padding: 15px; overflow-y: auto; font-size: 14px; }
+.chat-actions { padding: 10px; display: grid; gap: 5px; }
+.faq-btn { font-size: 11px; padding: 5px; cursor: pointer; border: 1px solid #ddd; background: #f9f9f9; }
+
+footer { text-align: center; padding: 40px; background: #eee; margin-top: 50px; }
