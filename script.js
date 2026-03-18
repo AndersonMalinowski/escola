@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- NAVEGAÇÃO POR ABAS (TELAS) ---
+    // NAVEGAÇÃO ENTRE TELAS
     const links = document.querySelectorAll('.tab-link');
     const contents = document.querySelectorAll('.tab-content');
 
@@ -9,78 +9,72 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = link.getAttribute('data-tab');
 
-            // Remove active de tudo
+            // Troca classes active
             links.forEach(l => l.classList.remove('active'));
-            contents.forEach(c => c.classList.remove('active'));
+            contents.forEach(c => {
+                c.classList.remove('active');
+                c.style.display = 'none'; // Garante que suma
+            });
 
-            // Ativa a aba clicada e a tela correspondente
             link.classList.add('active');
-            document.getElementById(targetId).classList.add('active');
+            const target = document.getElementById(targetId);
+            target.style.display = 'block';
+            setTimeout(() => target.classList.add('active'), 10);
 
-            // Scroll para o topo suave
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
 
-    // --- MODAL DE LOGIN ---
+    // MODAL DE LOGIN
     const modal = document.getElementById('modal-login');
     const btnPortal = document.getElementById('btn-portal');
     const closeLogin = document.getElementById('close-login');
 
     btnPortal.onclick = () => modal.style.display = 'block';
     closeLogin.onclick = () => modal.style.display = 'none';
-    window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; }
 
-    // --- FILTRO DE NOTÍCIAS ---
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const newsCards = document.querySelectorAll('.news-card');
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.getAttribute('data-filter');
-
-            newsCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                card.style.display = (filter === 'all' || category === filter) ? 'block' : 'none';
-            });
-        });
-    });
-
-    // --- CHATBOT ---
+    // CHATBOT LÓGICA
     const chatBtn = document.getElementById('chatbot-btn');
-    const chatModal = document.getElementById('chat-modal');
-    const closeChat = document.getElementById('close-chat');
+    const chatWin = document.getElementById('chat-modal');
     const chatBody = document.getElementById('chat-body');
-    const faqBtns = document.querySelectorAll('.faq-btn');
 
-    chatBtn.onclick = () => chatModal.style.display = chatModal.style.display === 'flex' ? 'none' : 'flex';
-    closeChat.onclick = () => chatModal.style.display = 'none';
-
-    const respostas = {
-        mensalidade: "O valor para 2025 é R$ 450,00 mensais.",
-        horario: "Aulas noturnas: 19h às 22h30.",
-        endereco: "Rua São Cristóvão, 123 - Centro, Curitiba."
+    chatBtn.onclick = () => {
+        chatWin.style.display = chatWin.style.display === 'flex' ? 'none' : 'flex';
     };
 
-    faqBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+    const botRespostas = {
+        mensalidade: "O curso técnico tem o valor de R$ 450,00/mês para 2025.",
+        bolsa: "Temos o programa 'TechTalent' que oferece bolsas de até 50% conforme nota na prova.",
+        endereco: "Estamos na Rua São Cristóvão, 123, Próximo à Praça do Japão."
+    };
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+        btn.onclick = () => {
             const q = btn.getAttribute('data-q');
-            chatBody.innerHTML += `<p><b>Você:</b> ${btn.innerText}</p>`;
+            chatBody.innerHTML += `<div class="user-msg">${btn.innerText}</div>`;
+            
             setTimeout(() => {
-                chatBody.innerHTML += `<p style="color:blue"><b>Assistente:</b> ${respostas[q]}</p>`;
+                chatBody.innerHTML += `<div class="bot-msg">${botRespostas[q]}</div>`;
                 chatBody.scrollTop = chatBody.scrollHeight;
-            }, 400);
-        });
+            }, 600);
+        };
     });
 
-    // --- MÁSCARA TELEFONE ---
-    const tel = document.getElementById('telefone');
-    tel.addEventListener('input', (e) => {
-        let v = e.target.value.replace(/\D/g, "");
-        v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
-        v = v.replace(/(\d{5})(\d)/, "$1-$2");
-        e.target.value = v;
-    });
+    // MÁSCARA TELEFONE
+    const telInput = document.getElementById('telefone');
+    if(telInput) {
+        telInput.addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, "");
+            v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+            v = v.replace(/(\d{5})(\d)/, "$1-$2");
+            e.target.value = v;
+        });
+    }
+
+    // SIMULAÇÃO DE ENVIO DE FORMULÁRIO
+    document.getElementById('preinscricao-form').onsubmit = (e) => {
+        e.preventDefault();
+        alert("Solicitação enviada! Nossa equipe entrará em contato em breve.");
+        e.target.reset();
+    };
 });
