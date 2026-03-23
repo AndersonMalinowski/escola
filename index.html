@@ -10,31 +10,33 @@
 </head>
 <body>
 
-<header>
-    <div class="header-content">
+<header class="main-header">
+    <div class="container">
         <div class="logo-area">
             <span class="icon-logo">🚀</span>
             <h1>Colégio São Cristóvão</h1>
         </div>
-        <p>A excelência do ensino técnico no coração de Curitiba</p>
+        <p class="subtitle">A excelência do ensino técnico no coração de Curitiba</p>
     </div>
 </header>
 
-<nav>
-    <ul>
-        <li><a href="#" class="tab-link active" data-tab="sobre">Início</a></li>
-        <li><a href="#" class="tab-link" data-tab="cursos">Cursos</a></li>
-        <li><a href="#" class="tab-link" data-tab="noticias">Eventos</a></li>
-        <li><a href="#" class="tab-link" data-tab="contato">Matrículas</a></li>
-        <li><button id="btn-portal">Portal do Aluno</button></li>
-    </ul>
+<nav class="main-nav">
+    <div class="container nav-wrapper">
+        <ul class="nav-links">
+            <li><a href="#" class="tab-link active" data-tab="sobre">Início</a></li>
+            <li><a href="#" class="tab-link" data-tab="cursos">Cursos</a></li>
+            <li><a href="#" class="tab-link" data-tab="noticias">Eventos</a></li>
+            <li><a href="#" class="tab-link" data-tab="contato">Matrículas</a></li>
+        </ul>
+        <button id="btn-portal" class="btn-outline">Portal do Aluno</button>
+    </div>
 </nav>
 
-<div id="modal-login" class="modal">
+<div id="modal-login" class="modal-overlay">
     <div class="modal-content">
-        <span class="close" id="close-login">&times;</span>
+        <button class="close-btn" id="close-login">&times;</button>
         <h2>Acesso Restrito</h2>
-        <form id="login-form">
+        <form id="login-form" class="form-group">
             <input type="text" id="rm" placeholder="RM (ex: 2024001)" required>
             <input type="password" id="senha" placeholder="Sua senha" required>
             <button type="submit" class="btn-primary">Entrar no Sistema</button>
@@ -42,124 +44,54 @@
     </div>
 </div>
 
-<main>
+<main class="container">
     <section id="sobre" class="tab-content active">
         <div class="hero-text">
-            <h2>Transformando curiosidade em carreira.</h2>
+            <h2>Transformando curiosidade em <span class="text-gradient">carreira.</span></h2>
             <p>Com mais de 20 anos de tradição, o São Cristóvão une a base acadêmica sólida com a prática tecnológica exigida pelo mercado atual.</p>
         </div>
 
         <div class="stats-grid">
             <div class="stat-card"><h3>+1500</h3><p>Alunos Formados</p></div>
             <div class="stat-card"><h3>92%</h3><p>Empregabilidade</p></div>
-            <div class="stat-card"><h3>24h</h3><p>Laboratórios Abertos</p></div>
+            <div class="stat-card"><h3>24h</h3><p>Lab Aberto</p></div>
         </div>
 
-        <h3>Nossa Infraestrutura</h3>
-        <p>Contamos com 2 laboratórios de última geração, biblioteca e espaços de coworking para projetos de alunos.</p>
-        <div class="gallery">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Sala de Aula">
-            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Alunos Codando">
-        </div>
-    </section>
-
-    <section id="cursos" class="tab-content">
-        <h2>Nossa Grade Técnica</h2>
-        <p>Nossos cursos são focados em <strong>Habilidades 4.0</strong>. Escolha sua trilha:</p>
-
-        <div class="course-detail">
-            <div class="course-header">
-                <h3>Desenvolvimento de Sistemas</h3>
-                <span class="badge">Destaque</span>
+        <div class="info-section">
+            <div class="text-content">
+                <h3>Infraestrutura de Ponta</h3>
+                <p>Laboratórios equipados com hardware de última geração, biblioteca técnica e espaços de coworking.</p>
             </div>
-            <p>Focado na criação de softwares, apps e sistemas web complexos. O aluno sai pronto para atuar como Desenvolvedor Junior.</p>
-            <div class="tech-tags">
-                <span>#React</span> <span>#NodeJS</span> <span>#Python</span> <span>#SQL</span>
-            </div>
-        </div>
-
-        <div class="course-detail">
-            <h3>Administração & Negócios</h3>
-            <p>Gestão moderna com foco em startups, finanças digitais e empreendedorismo estratégico.</p>
-            <div class="tech-tags">
-                <span>#Agile</span> <span>#PowerBI</span> <span>#Finanças</span>
-            </div>
-        </div>
-
-        <h3>Certificações Inclusas</h3>
-        <ul class="custom-list">
-            <li>Certificação intermediária a cada semestre.</li>
-            <li>Parceria com Microsoft e AWS para exames oficiais.</li>
-            <li>Projetos integradores com empresas reais de Curitiba.</li>
-        </ul>
-    </section>
-
-    <section id="noticias" class="tab-content">
-        <h2>Fique por dentro</h2>
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">Tudo</button>
-            <button class="filter-btn" data-filter="tecnologia">Tech</button>
-            <button class="filter-btn" data-filter="esportes">Esportes</button>
-        </div>
-
-        <div class="news-grid">
-            <div class="news-card" data-category="tecnologia">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="info">
-                    <h4>Inauguração do Hub de IA</h4>
-                    <p>Novo espaço dedicado a estudos de inteligência artificial aplicada.</p>
-                    <time>18 Mar 2025</time>
-                </div>
-            </div>
-            <div class="news-card" data-category="esportes">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1461891211039-495922ffb51c?auto=format&fit=crop&w=500&q=80')"></div>
-                <div class="info">
-                    <h4>Final do Torneio de E-Sports</h4>
-                    <p>Time de CS do Colégio leva o troféu estadual.</p>
-                    <time>12 Mar 2025</time>
-                </div>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Sala de Aula">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Alunos Codando">
             </div>
         </div>
     </section>
 
-    <section id="contato" class="tab-content">
-        <h2>Inicie sua Jornada</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <p>📍 Rua São Cristóvão, 123 - Curitiba/PR</p>
-                <p>📞 (41) 3333-4444</p>
-                <p>📧 contato@saocristovao.edu.br</p>
-            </div>
-            <form id="preinscricao-form" class="contact-form">
-                <input type="text" placeholder="Nome completo" required>
-                <input type="email" placeholder="Seu melhor e-mail" required>
-                <input type="tel" id="telefone" placeholder="(41) 99999-9999" required>
-                <select required>
-                    <option value="">Qual curso te interessa?</option>
-                    <option value="ds">Sistemas</option>
-                    <option value="adm">Administração</option>
-                </select>
-                <button type="submit" class="btn-primary">Solicitar Visita</button>
-            </form>
-        </div>
-    </section>
-</main>
+    </main>
 
-<footer>
-    <p>© 2025 Colégio São Cristóvão • Todos os direitos reservados.</p>
+<footer class="main-footer">
+    <p>© 2026 Colégio São Cristóvão • Todos os direitos reservados.</p>
 </footer>
 
-<div class="chatbot-fab" id="chatbot-btn">🤖</div>
-<div class="chat-window" id="chat-modal">
-    <div class="chat-header"><span>Assistente Virtual</span><span class="close" id="close-chat">&times;</span></div>
-    <div class="chat-body" id="chat-body">
-        <p class="bot-msg">Olá! Como posso ajudar você hoje?</p>
+<div class="chatbot-wrapper">
+    <div class="chat-window" id="chat-modal">
+        <div class="chat-header">
+            <span>Assistente Virtual</span>
+            <button class="close-btn" id="close-chat">&times;</button>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <p class="bot-msg">Olá! Como posso ajudar você hoje?</p>
+        </div>
+        <div class="chat-footer">
+            <div class="faq-suggestions">
+                <button class="faq-btn" data-q="mensalidade">Mensalidades</button>
+                <button class="faq-btn" data-q="bolsa">Bolsas</button>
+            </div>
+        </div>
     </div>
-    <div class="chat-actions">
-        <button class="faq-btn" data-q="mensalidade">Mensalidades</button>
-        <button class="faq-btn" data-q="bolsa">Bolsas</button>
-        <button class="faq-btn" data-q="endereco">Endereço</button>
-    </div>
+    <div class="chatbot-fab" id="chatbot-btn">🤖</div>
 </div>
 
 <script src="script.js"></script>
