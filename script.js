@@ -1,5 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-   
     // NAVEGAÇÃO ENTRE TELAS
     const links = document.querySelectorAll('.tab-link');
     const contents = document.querySelectorAll('.tab-content');
